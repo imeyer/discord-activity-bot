@@ -1,0 +1,59 @@
+# Git
+.git/
+.gitignore
+
+# Documentation
+*.md
+docs/
+
+# Development
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Bazel
+bazel-*
+
+# Go
+*.test
+*.out
+go.work
+go.work.sum
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+
+# Environment files  
+.env*
+
+# Database files
+*.db
+*.sqlite*
+
+# Certificates
+*.pem
+*.key
+*.crt
+
+# Backup files
+*.bak
+*.backup
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Development tools
+tools/
+dev/
+
+# Exclude everything except the binary we're copying
+*
+!discord-activity-bot

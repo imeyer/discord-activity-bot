@@ -1,0 +1,57 @@
+# Bazel directories
+/bazel-*
+.bazelrc.user
+.bazelversion
+MODULE.bazel.lock
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+# Go workspace file
+go.work
+go.work.sum
+
+# Binaries
+/discord-activity-bot
+discord-bot
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Log files
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+
+# Certificates
+*.pem
+*.key
+*.crt
+
+# Backup files
+*.bak
+*.backup
+
+# OS files
+Thumbs.db
+.DS_Store

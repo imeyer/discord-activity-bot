@@ -1,0 +1,20 @@
+load("@rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = ["image_graph.go"],
+    importpath = "github.com/imeyer/discord-activity-bot/internal/charts",
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//db:go_default_library",
+        "//internal/pkg:go_default_library",
+        "@io_opentelemetry_go_otel//attribute:go_default_library",
+        "@io_opentelemetry_go_otel_metric//:go_default_library",
+        "@org_gonum_v1_gonum//interp:go_default_library",
+        "@org_gonum_v1_plot//:go_default_library",
+        "@org_gonum_v1_plot//plotter:go_default_library",
+        "@org_gonum_v1_plot//vg:go_default_library",
+        "@org_gonum_v1_plot//vg/draw:go_default_library",
+        "@org_gonum_v1_plot//vg/vgimg:go_default_library",
+    ],
+)

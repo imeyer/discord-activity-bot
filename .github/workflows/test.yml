@@ -1,0 +1,46 @@
+name: Test
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+    paths-ignore:
+      - '*.md'
+      - 'docs/**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Bazel
+      uses: bazel-contrib/setup-bazel@0.9.0
+      with:
+        bazelisk-cache: true
+        disk-cache: true
+        repository-cache: true
+
+    - name: Run tests
+      run: bazelisk test //...
+
+    - name: Build binary
+      run: |
+        bazelisk build //cmd/discord-activity-bot:discord-activity-bot --stamp
+        
+        # Test that binary works
+        ./bazel-bin/cmd/discord-activity-bot/discord-activity-bot_/discord-activity-bot --version
+
+    - name: Test container build (without publishing)
+      run: |
+        # Copy binary for container build
+        cp bazel-bin/cmd/discord-activity-bot/discord-activity-bot_/discord-activity-bot discord-activity-bot
+        
+        # Build container image to verify it works
+        docker build -f Containerfile -t test-image .
+        
+        # Test that container runs and shows version
+        docker run --rm test-image --version

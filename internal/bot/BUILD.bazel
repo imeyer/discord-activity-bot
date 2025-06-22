@@ -1,0 +1,26 @@
+load("@rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "admin_commands.go",
+        "bot.go",
+        "commands.go",
+        "discord_trace.go",
+        "metrics_server.go",
+        "recovery.go",
+        "validation.go",
+    ],
+    importpath = "github.com/imeyer/discord-activity-bot/internal/bot",
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "//db:go_default_library",
+        "//internal/charts:go_default_library",
+        "//internal/pkg:go_default_library",
+        "//internal/users:go_default_library",
+        "@com_github_bwmarrin_discordgo//:go_default_library",
+        "@com_github_jackc_pgx_v5//pgxpool:go_default_library",
+        "@io_opentelemetry_go_otel//attribute:go_default_library",
+        "@io_opentelemetry_go_otel_metric//:go_default_library",
+    ],
+)

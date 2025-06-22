@@ -1,0 +1,28 @@
+load("@rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "admin_roles.sql.go",
+        "analytics.sql.go",
+        "db.go",
+        "messages.sql.go",
+        "models.go",
+        "querier.go",
+        "response_channels.sql.go",
+        "traced_querier.go",
+        "users.sql.go",
+    ],
+    importpath = "github.com/imeyer/discord-activity-bot/db",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//internal/pkg:go_default_library",
+        "@com_github_jackc_pgx_v5//:go_default_library",
+        "@com_github_jackc_pgx_v5//pgconn:go_default_library",
+        "@com_github_jackc_pgx_v5//pgtype:go_default_library",
+        "@io_opentelemetry_go_otel//attribute:go_default_library",
+        "@io_opentelemetry_go_otel//codes:go_default_library",
+        "@io_opentelemetry_go_otel_metric//:go_default_library",
+        "@io_opentelemetry_go_otel_trace//:go_default_library",
+    ],
+)

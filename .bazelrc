@@ -1,0 +1,40 @@
+# Go specific settings
+build --@rules_go//go/config:pure
+
+# Workspace status script for build stamping
+build --workspace_status_command=tools/workspace_status.sh
+
+# Test options
+test --test_output=errors
+test --test_verbose_timeout_warnings
+
+# Performance options
+build --jobs=auto
+build --remote_download_minimal
+
+# Use a hermetic C++ toolchain
+build --repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1
+
+# Platform settings
+build:linux --platforms=@rules_go//go/toolchain:linux_amd64
+build:darwin --platforms=@rules_go//go/toolchain:darwin_amd64
+
+# Release build settings
+build:release --compilation_mode=opt
+build:release --strip=always
+
+# Debug build settings
+build:debug --compilation_mode=dbg
+build:debug --strip=never
+
+# Convenience aliases
+build --flag_alias=go_version=@rules_go//go:version
+
+# CI settings
+build:ci --color=no
+build:ci --curses=no
+build:ci --show_timestamps
+build:ci --announce_rc
+build:ci --verbose_failures
+test:ci --test_output=all
+test:ci --test_verbose_timeout_warnings
