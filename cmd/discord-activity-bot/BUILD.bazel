@@ -18,7 +18,7 @@ go_binary(
     visibility = ["//visibility:public"],
     x_defs = {
         "main.version": "{STABLE_BUILD_VERSION}",
-        "main.buildDate": "{BUILD_TIMESTAMP}",  
+        "main.buildDate": "{BUILD_TIMESTAMP}",
         "main.gitCommit": "{STABLE_BUILD_SCM_REVISION}",
     },
 )
